@@ -1,0 +1,20 @@
+﻿@inherits UmbracoViewPage<dynamic>
+
+@if (Model != null && Model.sections != null)
+{
+    foreach (var section in Model.sections) {            
+        foreach (var row in section.rows) {
+            @renderRow(row);
+        }
+    }
+}
+
+@helper renderRow(dynamic row){
+    foreach ( var area in row.areas ) {
+        foreach (var control in area.controls) {
+            if (control !=null && control.editor != null && control.editor.view != null ) {
+                <text>@Html.Partial("grid/editors/base", (object)control)</text>
+            }
+        }
+    }
+}

@@ -1,0 +1,33 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.SearchResult>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@using Examine.LuceneEngine.SearchCriteria;
+
+@{
+    Layout = null;
+}
+@{
+    
+
+    var query = Request.QueryString["query"];
+    var searcher = Examine.ExamineManager.Instance.SearchProviderCollection["ExternalSearcher"];
+
+    var searchCriteria = searcher.CreateSearchCriteria(Examine.SearchCriteria.BooleanOperation.Or);
+    var searchQuery = searchCriteria.Field("nodeName", query.Boost(5)).Or().Field("nodeName", query.Fuzzy()).And().Field("__IndexType", "content").And().OrderByDescending("createDate");
+    var searchResults = searcher.Search(searchQuery.Compile());
+    if (searchResults.Any())
+    {
+        <ul>
+            @foreach (var result in searchResults)
+            {
+                var node = Umbraco.TypedContent(result.Id);
+                <li>
+                    <a href="@node.Url">@node.Name</a>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <span>No result </span>
+    }
+}
