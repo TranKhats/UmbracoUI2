@@ -8,8 +8,8 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "e0a112947b3d1781")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "88e031870c00ab17")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
 
 
 // FILE: models.generated.cs
@@ -40,33 +40,7 @@ using  Umbraco.ModelsBuilder.Umbraco;
 
 namespace Umbraco.Web.PublishedContentModels
 {
-	/// <summary>Home Page</summary>
-	[PublishedContentModel("homePage")]
-	public partial class HomePage : PublishedContentModel
-	{
-#pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "homePage";
-		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
-#pragma warning restore 0109
-
-		public HomePage(IPublishedContent content)
-			: base(content)
-		{ }
-
-#pragma warning disable 0109 // new is redundant
-		public new static PublishedContentType GetModelContentType()
-		{
-			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
-		}
-#pragma warning restore 0109
-
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<HomePage, TValue>> selector)
-		{
-			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
-		}
-	}
-
-	/// <summary>ProductItem</summary>
+	/// <summary>Product item</summary>
 	[PublishedContentModel("productItem")]
 	public partial class ProductItem : PublishedContentModel
 	{
@@ -89,6 +63,68 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<ProductItem, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Description
+		///</summary>
+		[ImplementPropertyType("description")]
+		public IHtmlString Description
+		{
+			get { return this.GetPropertyValue<IHtmlString>("description"); }
+		}
+
+		///<summary>
+		/// Image
+		///</summary>
+		[ImplementPropertyType("image")]
+		public Umbraco.Web.Models.ImageCropDataSet Image
+		{
+			get { return this.GetPropertyValue<Umbraco.Web.Models.ImageCropDataSet>("image"); }
+		}
+
+		///<summary>
+		/// Product Name
+		///</summary>
+		[ImplementPropertyType("productName")]
+		public string ProductName
+		{
+			get { return this.GetPropertyValue<string>("productName"); }
+		}
+	}
+
+	/// <summary>Home</summary>
+	[PublishedContentModel("home")]
+	public partial class Home : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "home";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public Home(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Home, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Product Container
+		///</summary>
+		[ImplementPropertyType("productContainer")]
+		public IEnumerable<IPublishedContent> ProductContainer
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("productContainer"); }
 		}
 	}
 
