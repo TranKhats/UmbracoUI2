@@ -1,5 +1,16 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Home>
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.TextPage>
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
-	Layout = null;
+    Layout = "_MasterTemplate.cshtml";
+}
+
+@using Our.Umbraco.Ditto
+@inherits UmbracoTemplatePage
+@{
+    var model = Model.Content.As<UmbracoUI2.Models.HomeModels>();
+    int x = 0;
+}
+@if (model.ProductContainer!=null)
+{
+    Html.Partial("_Product Item", model.ProductContainer);
 }
