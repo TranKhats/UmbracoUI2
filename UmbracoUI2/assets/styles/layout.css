@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /*
 Template Name: Yoffa
 Author: <a href="https://www.os-templates.com/">OS Templates</a>
@@ -31,12 +31,23 @@ File: Layout CSS
 #header{padding:0 15px;}
 
 #header #logo{margin:28px 0 0 0;}
-#header #logo h1{margin:0; padding:0; font-size:22px; text-transform:uppercase;}
+	#header #logo h1 {
+		margin: 0;
+		padding: 0;
+		font-size: 22px;
+		text-transform: uppercase;
+		float: left;
+	}
 
-
-/* Page Intro
+#logo > div, #logo form > * {
+	float: left;
+	margin-left: 30px;
+}
+	/* Page Intro
 --------------------------------------------------------------------------------------------------------------- */
-#pageintro{padding:180px 0;}
+	#pageintro {
+		padding: 180px 0;
+	}
 
 #pageintro article{max-width:65%; margin:0 auto; text-align:center;}
 #pageintro article *{text-transform:uppercase;}
