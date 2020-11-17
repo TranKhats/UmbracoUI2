@@ -6,9 +6,11 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using Umbraco.Core;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Web;
+using UmbracoUI2.Helpers;
 using UmbracoUI2.Models;
 
 namespace UmbracoUI2.TypeConverters
@@ -32,22 +34,30 @@ namespace UmbracoUI2.TypeConverters
                 {
                     foreach (var item in vosto)
                     {
-                        var test = item.Properties;
+                        var properties = item.Properties;
 
                         //--------------------------
-                        var umbracoHelper = new Umbraco.Web.UmbracoHelper(Umbraco.Web.UmbracoContext.Current);
-                        var media = test.FirstOrDefault(t => t.PropertyTypeAlias == "productImage")?.DataValue.ToString();
-                        var publishedContent = umbracoHelper.TypedMedia(media);
+                        //string productImage = "";
+                        //var media = properties.FirstOrDefault(t => t.PropertyTypeAlias == "productImage")?.DataValue.ToString();
+                        //if (!string.IsNullOrEmpty(media))
+                        //{
+                        //    var umbracoHelper = new Umbraco.Web.UmbracoHelper(Umbraco.Web.UmbracoContext.Current);
+                        //    var guidUdi = GuidUdi.Parse(media);
+                        //    var imageNodeId = ApplicationContext.Current.Services.EntityService.GetIdForKey(guidUdi.Guid, (UmbracoObjectTypes)Enum.Parse(typeof(UmbracoObjectTypes), guidUdi.EntityType, true));
+
+                        //    var publishedContent = umbracoHelper.TypedMedia(imageNodeId.Result);
+                        //    productImage = publishedContent.Url;
+                        //}
                         //--------------------------
 
 
-                        var dataitem = new ProductContainer()
+                        var dataItem = new ProductContainer()
                         {
-                            Description = test.FirstOrDefault(t => t.PropertyTypeAlias == "description")?.DataValue.ToString(),
-                            ProductName = test.FirstOrDefault(t => t.PropertyTypeAlias == "productName")?.DataValue.ToString(),
-                            ProductImage = test.FirstOrDefault(t => t.PropertyTypeAlias == "productImage")?.DataValue.ToString(),
+                            Description = properties.FirstOrDefault(t => t.PropertyTypeAlias == "description")?.DataValue.ToString(),
+                            ProductName = properties.FirstOrDefault(t => t.PropertyTypeAlias == "productName")?.DataValue.ToString(),
+                            ProductImage = UmbracoUI2Helper.GetMediaUrlPicker(properties.FirstOrDefault(t => t.PropertyTypeAlias == "productImage")?.DataValue.ToString())/*properties.FirstOrDefault(t => t.PropertyTypeAlias == "productImage")?.DataValue.ToString()*/,
                         };
-                        result.Add(dataitem);
+                        result.Add(dataItem);
                     }
                 }
             }

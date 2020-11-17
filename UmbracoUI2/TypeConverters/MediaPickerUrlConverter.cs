@@ -22,7 +22,6 @@ namespace UmbracoUI2.TypeConverters
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
             var mediaId = value as string;
-            var test= UmbracoContext.Current.MediaCache.GetById(1088)?.Url; ;
             if (mediaId != null)
             {
                 int id;

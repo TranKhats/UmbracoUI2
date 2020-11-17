@@ -1,33 +1,38 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.SearchResult>
-@using ContentModels = Umbraco.Web.PublishedContentModels;
+﻿@using ContentModels = Umbraco.Web.PublishedContentModels;
 @using Examine.LuceneEngine.SearchCriteria;
-
+@using UmbracoUI2.Models
+@inherits UmbracoDI2.Services.UmbracoTemplatePage
 @{
-    Layout = null;
+
+    Layout = "_MasterTemplate.cshtml";
 }
 @{
-    
-
     var query = Request.QueryString["query"];
-    var searcher = Examine.ExamineManager.Instance.SearchProviderCollection["ExternalSearcher"];
-
-    var searchCriteria = searcher.CreateSearchCriteria(Examine.SearchCriteria.BooleanOperation.Or);
-    var searchQuery = searchCriteria.Field("nodeName", query.Boost(5)).Or().Field("nodeName", query.Fuzzy()).And().Field("__IndexType", "content").And().OrderByDescending("createDate");
-    var searchResults = searcher.Search(searchQuery.Compile());
-    if (searchResults.Any())
+    SearchResultsModel searchResults = new SearchResultsModel();
+    if (!string.IsNullOrEmpty(query))
     {
-        <ul>
-            @foreach (var result in searchResults)
+        searchResults = _searchingServices.Search(query);
+    }
+    <div class="wrapper row5">
+        <div class="hoc clear">
+            @if (searchResults.ListNode != null && searchResults.ListNode.Any())
             {
-                var node = Umbraco.TypedContent(result.Id);
-                <li>
-                    <a href="@node.Url">@node.Name</a>
-                </li>
+                <ul>
+                    @foreach (var node in searchResults.ListNode)
+                    {
+                        <li>
+                            <a href="@node.Url">@node.Name</a>
+                        </li>
+                    }
+                </ul>
             }
-        </ul>
-    }
-    else
-    {
-        <span>No result </span>
-    }
+            else
+            {
+                <ul>
+                    <li><span>No result </span></li>
+                </ul>
+            }
+        </div>
+    </div>
+
 }

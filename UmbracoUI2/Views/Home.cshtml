@@ -10,7 +10,9 @@
     var model = Model.Content.As<UmbracoUI2.Models.HomeModels>();
     int x = 0;
 }
-@if (model.ProductContainer!=null)
-{
-    Html.Partial("_Product Item", model.ProductContainer);
-}
+@*@if (model.ProductContainer!=null)
+    {
+        Html.Partial("_Product Item", model.ProductContainer);
+    }*@
+
+@Html.Partial("_Product Item", model.ProductContainer);

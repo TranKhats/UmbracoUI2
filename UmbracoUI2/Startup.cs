@@ -17,14 +17,12 @@ using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 using Umbraco.Web;
 using UmbracoDI2.Services;
+using UmbracoUI2.Services;
 
 namespace UmbracoDI2
 {
     public class Startup : ApplicationEventHandler
     {
-        private BaseSearchProvider _searcher;
-
-
         protected override void ApplicationStarting(UmbracoApplicationBase umbracoApplication, ApplicationContext applicationContext)
         {
             var builder = new ContainerBuilder();
@@ -42,6 +40,7 @@ namespace UmbracoDI2
             // add custom class to the container as Transient instance
             builder.RegisterType<MyAwesomeContext>();
             builder.RegisterType<NumberServices>().As<INumber>().AsSelf();
+            builder.RegisterType<SearchingService>().As<ISearchService>().AsSelf();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
