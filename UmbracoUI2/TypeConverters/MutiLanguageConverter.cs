@@ -1,5 +1,5 @@
 ﻿using Our.Umbraco.Ditto;
-using Servcorp.Web.Extensions;
+using UmbracoUI2.Web.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,8 +19,7 @@ namespace UmbracoUI2.TypeConverters
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
-            return true;
-            //return sourceType == typeof(List<ProductContainer>) || base.CanConvertFrom(context, sourceType);
+            return sourceType == typeof(Our.Umbraco.Vorto.Models.VortoValue) || base.CanConvertFrom(context, sourceType);
         }
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
@@ -30,6 +29,7 @@ namespace UmbracoUI2.TypeConverters
             try
             {
                 var vosto = content.TryGetVortoValue<IEnumerable<IPublishedContent>>(context.PropertyDescriptor.Name);
+                //var test = value.TryConvertTo< Our.Umbraco.Vorto.Models.VortoValue>();
                 if (vosto != null)
                 {
                     foreach (var item in vosto)
@@ -67,5 +67,28 @@ namespace UmbracoUI2.TypeConverters
             }
             return result;
         }
+
+        private IPublishedContent GetInitialContent(UmbracoContext context)
+        {
+            if (context.PublishedContentRequest == null)
+            {
+                return null;
+            }
+
+            IPublishedContent content;
+
+            if (context.PublishedContentRequest.IsInternalRedirectPublishedContent)
+            {
+                content = context.PublishedContentRequest.InitialPublishedContent;
+            }
+            else
+            {
+                content = context.PublishedContentRequest.PublishedContent;
+            }
+
+            return content;
+        }
+
+
     }
 }

@@ -17,6 +17,7 @@ using Umbraco.Core.Models;
 using Umbraco.Core.Services;
 using Umbraco.Web;
 using UmbracoDI2.Services;
+using UmbracoUI2;
 using UmbracoUI2.Services;
 
 namespace UmbracoDI2
@@ -41,11 +42,13 @@ namespace UmbracoDI2
             builder.RegisterType<MyAwesomeContext>();
             builder.RegisterType<NumberServices>().As<INumber>().AsSelf();
             builder.RegisterType<SearchingService>().As<ISearchService>().AsSelf();
+            builder.RegisterType<NavigationService>().As<INavigationService>().AsSelf();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
             RegisterCustomRoutes();
+            //RouteConfig.RegisterRoutes(RouteTable.Routes);
             base.ApplicationStarting(umbracoApplication, applicationContext);
         }
 
@@ -56,6 +59,10 @@ namespace UmbracoDI2
                name: "FormsController",
                url: "Forms/{action}/{id}",
                defaults: new { controller = "Forms", action = "Index", id = UrlParameter.Optional });
+            RouteTable.Routes.MapRoute(
+               name: "NavigationController",
+               url: "Navigation/{action}/{id}",
+               defaults: new { controller = "Navigation", action = "Index", id = UrlParameter.Optional });
         }
     }
     public class MyAwesomeContext

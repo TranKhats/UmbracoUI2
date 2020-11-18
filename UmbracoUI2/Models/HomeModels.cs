@@ -22,9 +22,9 @@ namespace UmbracoUI2.Models
         //[UmbracoProperty("multiUrlPicker")]
         //public LinkModel MultiUrlPicker { get; set; }
 
-        [UmbracoProperty("largeImage")]
-        [TypeConverter(typeof(MediaPickerUrlConverter))]
-        public object LargeImage { get; set; }
+        //[UmbracoProperty("largeImage")]
+        //[TypeConverter(typeof(MediaPickerUrlConverter))]
+        //public object LargeImage { get; set; }
 
 
         [TypeConverter(typeof(MutiLanguageConverter))]

@@ -1,5 +1,5 @@
 ﻿using Our.Umbraco.Ditto;
-using Servcorp.Web.Extensions;
+using UmbracoUI2.Web.Extensions;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;

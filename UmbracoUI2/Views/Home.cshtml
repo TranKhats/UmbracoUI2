@@ -15,4 +15,5 @@
         Html.Partial("_Product Item", model.ProductContainer);
     }*@
 
-@Html.Partial("_Product Item", model.ProductContainer);
+@Html.Partial("_Product Item", model.ProductContainer)
+@Html.Action("RenderTopNavigation", "SiteLayout")

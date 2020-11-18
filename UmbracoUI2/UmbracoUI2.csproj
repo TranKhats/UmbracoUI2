@@ -360,14 +360,21 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controlllers\FormsController.cs" />
+    <Compile Include="Controlllers\NavigationController.cs" />
+    <Compile Include="Controlllers\SiteLayoutController.cs" />
     <Compile Include="Extensions\PublishedContentExtensions.cs" />
     <Compile Include="Helpers\UmbracoUI2Helper.cs" />
     <Compile Include="Models\HomeModels.cs" />
+    <Compile Include="Models\NavigationLinks.cs" />
+    <Compile Include="Models\NavigationsResultModel.cs" />
     <Compile Include="Models\SearchResultsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\INavigationService.cs" />
     <Compile Include="Services\INumber.cs" />
     <Compile Include="Services\ISearchService.cs" />
+    <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\NumberServices.cs" />
     <Compile Include="Services\SearchingService.cs" />
     <Compile Include="Services\UmbracoTemplatePage.cs" />
@@ -420,6 +427,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Partials\_Product Item.cshtml" />
+    <Content Include="Views\Partials\_TopNavigation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -431,7 +439,11 @@
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.Analyzers.dll" />
     <Analyzer Include="..\packages\Microsoft.CodeAnalysis.Analyzers.1.0.0\analyzers\dotnet\cs\Microsoft.CodeAnalysis.CSharp.Analyzers.dll" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Default\" />
+    <Folder Include="Views\Navigation\" />
+    <Folder Include="Views\SiteLayout\" />
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

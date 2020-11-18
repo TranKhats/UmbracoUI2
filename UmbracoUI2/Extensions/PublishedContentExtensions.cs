@@ -7,7 +7,7 @@ using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
 using Umbraco.Web;
 
-namespace Servcorp.Web.Extensions
+namespace UmbracoUI2.Web.Extensions
 {
     public static class PublishedContentExtensions
     {
