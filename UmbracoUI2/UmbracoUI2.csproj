@@ -428,6 +428,8 @@
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Partials\_Product Item.cshtml" />
     <Content Include="Views\Partials\_TopNavigation.cshtml" />
+    <Content Include="Views\_MasterTemplate.cshtml" />
+    <Content Include="Views\About.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

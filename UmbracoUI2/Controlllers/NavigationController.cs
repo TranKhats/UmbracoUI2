@@ -24,8 +24,8 @@ namespace UmbracoUI2.Controlllers
 
         public ActionResult GetNavigationMenu()
         {
-            var test = _navigationService.GetNavigations();
-            return View();
+            var menu = _navigationService.GetNavigations();
+            return PartialView("~/Views/Partials/_TopNavigation.cshtml", menu);
         }
     }
 }

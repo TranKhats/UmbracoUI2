@@ -54,9 +54,10 @@ namespace UmbracoUI2.Models
         public NavigationListItem()
         { }
 
-        public NavigationListItem(NavigationLink link)
+        public NavigationListItem(NavigationLink link,string text)
         {
             Link = link;
+            Text = text;
         }
 
         public NavigationListItem(string text)

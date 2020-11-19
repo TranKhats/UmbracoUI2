@@ -1,26 +1,22 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<List<NavigationListItems>>
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<NavigationsResultModel>
 @using UmbracoUI2.Models
 
-<nav id="menu-wrap" role="navigation">
-    <ul class="menu" id="primary-menu">
-        @RenderChildItems(Model)
+<nav id="mainav" class="fl_right">
+    <ul class="clear">
+        @RenderChildItems(Model.Navigations.ToList())
     </ul>
 </nav>
-
-@helper RenderChildItems(List<NavigationListItems> listItems)
+@helper RenderChildItems(List<NavigationListItem> listItems)
 {
     if (listItems != null)
     {
         foreach (var item in listItems)
         {
             <li>
-                @if (!String.IsNullOrEmpty(item.Text))
+                @if (item.Link != null)
                 {
-                    @item.Text
-                }
-                else if (item.Link != null)
-                {
-                    <a href="@item.Link.Url" class="@(Umbraco.AssignedContentItem.Url == item.Link.Url ? "active" : null) @(item.HasChildren ? "fh5co-sub-ddown" : null)" target="@item.Link.Target">@item.Link.Text</a>
+                    var isDropClass = item.HasChildren ? "drop" : "";
+                    <a href="@item.Link.Url" class="@isDropClass @(Umbraco.AssignedContentItem.Url == item.Link.Url ? "active" : null) @(item.HasChildren ? "fh5co-sub-ddown" : null)" target="@item.Link.Target">@item.Link.Text</a>
                 }
 
                 @if (item.HasChildren)
@@ -30,6 +26,6 @@
                     </ul>
                 }
             </li>
-        }       
+        }
     }
 }

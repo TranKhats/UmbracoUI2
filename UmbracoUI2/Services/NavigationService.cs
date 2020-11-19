@@ -19,20 +19,21 @@ namespace UmbracoUI2.Services
             if (pages != null)
             {
                 var menuItems = ((DynamicPublishedContentList)pages).ToList();
-                //foreach (var item in menuItems)
-                //{
-                //    NavigationListItem rootNode = new NavigationListItem()
-                //    {
-                //        Link = new NavigationLink() { Url = item.Url, Text = item.Name },
-                //    };
-                //    rootNode.Items = GetChildrenById(item.Id);
-                //    result.Add(rootNode);
-                //}
-                result = menuItems.Select(item => new NavigationListItem()
+                foreach (var item in menuItems)
                 {
-                    Link = new NavigationLink() { Url = item?.Url, Text = item?.Name },
-                    Items = GetChildrenById(item?.Id)
-                }).ToList();
+                    NavigationListItem rootNode = new NavigationListItem()
+                    {
+                        Link = new NavigationLink() { Url = item.Url, Text = item.Name },
+                        Text = item?.Name
+                    };
+                    rootNode.Items = GetChildrenById(item.Id);
+                    result.Add(rootNode);
+                }
+                //result = menuItems.Select(item => new NavigationListItem()
+                //{
+                //    Link = new NavigationLink() { Url = item?.Url, Text = item?.Name },
+                //    Items = GetChildrenById(item?.Id)
+                //}).ToList();
             }
             return new NavigationsResultModel() { Navigations = result };
         }
@@ -48,7 +49,7 @@ namespace UmbracoUI2.Services
             {
                 var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
                 IPublishedContent page = umbracoHelper.TypedContent(id);
-                nav.Add(new NavigationListItem(new NavigationLink(page.Url, page.Name)));
+                //nav.Add(new NavigationListItem(new NavigationLink(page.Url, page.Name)));
                 var item = GetChildNavigationList(page);
                 if (item != null)
                 {
@@ -65,14 +66,14 @@ namespace UmbracoUI2.Services
         /// <returns>A List of NavigationListItems, representing the structure of the pages below a page.</returns>
         private List<NavigationListItem> GetChildNavigationList(IPublishedContent page)
         {
-            List<NavigationListItem> listItems = null;
+            List<NavigationListItem> listItems = /*null*/new List<NavigationListItem>(); ;
             var childPages = page.Children.Where(t => t.IsVisible());
             if (childPages != null && childPages.Any() && childPages.Count() > 0)
             {
-                listItems = new List<NavigationListItem>();
+                //listItems = new List<NavigationListItem>();
                 foreach (var childPage in childPages)
                 {
-                    NavigationListItem listItem = new NavigationListItem(new NavigationLink(childPage.Url, childPage.Name));
+                    NavigationListItem listItem = new NavigationListItem(new NavigationLink(childPage.Url, childPage.Name), childPage?.Name);
                     listItem.Items = GetChildNavigationList(childPage);
                     listItems.Add(listItem);
                 }
