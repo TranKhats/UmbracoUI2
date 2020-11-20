@@ -10,6 +10,7 @@ namespace UmbracoUI2.Models
 {
     public class AboutModel
     {
+        [TypeConverter(typeof(MutiLanguageConverter))]
         [UmbracoProperty("title")]
         public string Title { get; set; }
 

@@ -27,7 +27,7 @@ namespace UmbracoUI2.Models
         //public object LargeImage { get; set; }
 
 
-        [TypeConverter(typeof(MutiLanguageConverter))]
+        [TypeConverter(typeof(MutiLanguageProductItemConverter))]
         [UmbracoProperty("productContainer")]
         public List<ProductContainer> ProductContainer { get; set; }
     }

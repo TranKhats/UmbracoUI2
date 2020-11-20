@@ -375,6 +375,7 @@
     <Compile Include="Startup.cs" />
     <Compile Include="TypeConverters\MediaPickerUrlConverter.cs" />
     <Compile Include="TypeConverters\MutiLanguageConverter.cs" />
+    <Compile Include="TypeConverters\MutiLanguageProductItemConverter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="config\imageprocessor\security.config" />
