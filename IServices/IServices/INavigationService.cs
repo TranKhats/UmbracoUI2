@@ -1,10 +1,10 @@
-﻿using System;
+﻿using Dtos.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using UmbracoUI2.Models;
 
-namespace UmbracoUI2.Services
+namespace IServices.IServices
 {
     public interface INavigationService
     {

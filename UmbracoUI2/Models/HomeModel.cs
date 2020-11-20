@@ -8,7 +8,7 @@ using UmbracoUI2.TypeConverters;
 
 namespace UmbracoUI2.Models
 {
-    public class HomeModels
+    public class HomeModel
     {
         //public string Title { get; set; }
 

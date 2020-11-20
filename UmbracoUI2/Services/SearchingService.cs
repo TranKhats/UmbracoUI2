@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Umbraco.Core.Models;
+﻿using System.Linq;
 using UmbracoUI2.Models;
 using Examine.LuceneEngine.SearchCriteria;
 using Umbraco.Web;
+using IServices.IServices;
+using Dtos.Models;
 
 namespace UmbracoUI2.Services
 {

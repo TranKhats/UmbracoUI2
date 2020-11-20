@@ -7,12 +7,8 @@
 @using Our.Umbraco.Ditto
 @inherits UmbracoTemplatePage
 @{
-    var model = Model.Content.As<UmbracoUI2.Models.HomeModels>();
-    int x = 0;
+    var model = Model.Content.As<UmbracoUI2.Models.HomeModel>();
 }
-@*@if (model.ProductContainer!=null)
-    {
-        Html.Partial("_Product Item", model.ProductContainer);
-    }*@
+
 
 @Html.Partial("_Product Item", model.ProductContainer)

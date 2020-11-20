@@ -1,23 +1,13 @@
 ﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Autofac.Integration.WebApi;
-using Examine.Providers;
-//using UmbracoDI.Services;
+using IServices.IServices;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Umbraco.Core;
-using Umbraco.Core.Events;
-using Umbraco.Core.Models;
-using Umbraco.Core.Services;
 using Umbraco.Web;
-using UmbracoDI2.Services;
-using UmbracoUI2;
 using UmbracoUI2.Services;
 
 namespace UmbracoDI2
@@ -40,9 +30,7 @@ namespace UmbracoDI2
 
             // add custom class to the container as Transient instance
             builder.RegisterType<MyAwesomeContext>();
-            builder.RegisterType<NumberServices>().As<INumber>().AsSelf();
-            builder.RegisterType<SearchingService>().As<ISearchService>().AsSelf();
-            builder.RegisterType<NavigationService>().As<INavigationService>().AsSelf();
+            builder.RegisterModule(new ServiceRegisteredModules());
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

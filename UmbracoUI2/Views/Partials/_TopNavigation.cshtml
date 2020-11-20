@@ -1,4 +1,5 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<NavigationsResultModel>
+﻿@using Dtos.Models
+@inherits Umbraco.Web.Mvc.UmbracoViewPage<NavigationsResultModel>
 @using UmbracoUI2.Models
 
 <nav id="mainav" class="fl_right">
@@ -16,7 +17,7 @@
                 @if (item.Link != null)
                 {
                     var isDropClass = item.HasChildren ? "drop" : "";
-                    <a href="@item.Link.Url" class="@isDropClass @(Umbraco.AssignedContentItem.Url == item.Link.Url ? "active" : null) @(item.HasChildren ? "fh5co-sub-ddown" : null)" target="@item.Link.Target">@item.Link.Text</a>
+                    <a href="@item.Link.Url" class="@isDropClass  @(item.HasChildren ? "fh5co-sub-ddown" : null)" target="@item.Link.Target">@item.Link.Text</a>
                 }
 
                 @if (item.HasChildren)

@@ -363,20 +363,14 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controlllers\FormsController.cs" />
     <Compile Include="Controlllers\NavigationController.cs" />
-    <Compile Include="Controlllers\SiteLayoutController.cs" />
     <Compile Include="Extensions\PublishedContentExtensions.cs" />
     <Compile Include="Helpers\UmbracoUI2Helper.cs" />
-    <Compile Include="Models\HomeModels.cs" />
-    <Compile Include="Models\NavigationLinks.cs" />
-    <Compile Include="Models\NavigationsResultModel.cs" />
-    <Compile Include="Models\SearchResultsModel.cs" />
+    <Compile Include="Models\AboutModel.cs" />
+    <Compile Include="Models\HomeModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\INavigationService.cs" />
-    <Compile Include="Services\INumber.cs" />
-    <Compile Include="Services\ISearchService.cs" />
     <Compile Include="Services\NavigationService.cs" />
-    <Compile Include="Services\NumberServices.cs" />
     <Compile Include="Services\SearchingService.cs" />
+    <Compile Include="Services\ServiceRegisteredModules.cs" />
     <Compile Include="Services\UmbracoTemplatePage.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TypeConverters\MediaPickerUrlConverter.cs" />
@@ -445,6 +439,16 @@
     <Folder Include="Views\Default\" />
     <Folder Include="Views\Navigation\" />
     <Folder Include="Views\SiteLayout\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dtos\Dtos.csproj">
+      <Project>{86d840ef-9712-4ec9-b9b6-9a252ca9c86e}</Project>
+      <Name>Dtos</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IServices\IServices.csproj">
+      <Project>{7036390f-149a-406f-bd5a-9dd94726bd44}</Project>
+      <Name>IServices</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

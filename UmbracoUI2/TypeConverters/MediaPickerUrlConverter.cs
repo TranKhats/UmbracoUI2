@@ -17,11 +17,15 @@ namespace UmbracoUI2.TypeConverters
     {
         public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
         {
-            return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
+            return true;
+            //return sourceType == typeof(string) || base.CanConvertFrom(context, sourceType);
         }
         public override object ConvertFrom(ITypeDescriptorContext context, CultureInfo culture, object value)
         {
             var mediaId = value as string;
+            var content = context.Instance as IPublishedContent;
+
+            //mediaId = value.ToString();
             if (mediaId != null)
             {
                 int id;
@@ -32,7 +36,7 @@ namespace UmbracoUI2.TypeConverters
                 }
                 return string.Empty;
             }
-
+            return "";
             return base.ConvertFrom(context, culture, value);
         }
     }

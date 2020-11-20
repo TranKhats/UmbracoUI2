@@ -1,5 +1,11 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.About>
 @using ContentModels = Umbraco.Web.PublishedContentModels;
 @{
-	Layout = "_MasterTemplate.cshtml";
+    Layout = "_MasterTemplate.cshtml";
+}
+
+@using Our.Umbraco.Ditto
+@inherits UmbracoTemplatePage
+@{
+    var model = Model.Content.As<UmbracoUI2.Models.AboutModel>();
 }
