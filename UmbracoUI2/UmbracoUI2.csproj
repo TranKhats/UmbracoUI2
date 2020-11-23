@@ -367,14 +367,17 @@
     <Compile Include="Helpers\UmbracoUI2Helper.cs" />
     <Compile Include="Models\AboutModel.cs" />
     <Compile Include="Models\HomeModel.cs" />
+    <Compile Include="Models\LocationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="Services\SearchingService.cs" />
-    <Compile Include="Services\ServiceRegisteredModules.cs" />
+    <Compile Include="Services\RegisteredServiceModules.cs" />
+    <Compile Include="Services\ShareableContentService.cs" />
     <Compile Include="Services\UmbracoTemplatePage.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="TypeConverters\MediaPickerUrlConverter.cs" />
     <Compile Include="TypeConverters\MutiLanguageConverter.cs" />
+    <Compile Include="TypeConverters\MutiLanguageLocationsConverter.cs" />
     <Compile Include="TypeConverters\MutiLanguageProductItemConverter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -425,6 +428,7 @@
     <Content Include="Views\Partials\_TopNavigation.cshtml" />
     <Content Include="Views\_MasterTemplate.cshtml" />
     <Content Include="Views\About.cshtml" />
+    <Content Include="Views\Location.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="IServices\INavigationService.cs" />
     <Compile Include="IServices\ISearchService.cs" />
+    <Compile Include="IServices\IShareableContentService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

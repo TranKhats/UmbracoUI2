@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
+using Our.Umbraco.Ditto;
 using Our.Umbraco.Vorto.Extensions;
 using Umbraco.Core.Logging;
 using Umbraco.Core.Models;
@@ -72,6 +74,10 @@ namespace UmbracoUI2.Web.Extensions
                 else if (currentUrl.Contains("/en/"))
                 {
                     currentLanguageCode = "en";
+                }
+                else if (currentUrl.Contains("/vi/"))
+                {
+                    currentLanguageCode = "vi";
                 }
 
                 if (currentLanguageCode != "")

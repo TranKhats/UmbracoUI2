@@ -30,7 +30,7 @@ namespace UmbracoDI2
 
             // add custom class to the container as Transient instance
             builder.RegisterType<MyAwesomeContext>();
-            builder.RegisterModule(new ServiceRegisteredModules());
+            builder.RegisterModule(new RegisteredServiceModules());
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

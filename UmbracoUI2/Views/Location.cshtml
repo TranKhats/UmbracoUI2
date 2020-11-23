@@ -1,0 +1,41 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.Location>
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@using UmbracoUI2.Models;
+@inherits UmbracoDI2.Services.UmbracoTemplatePage
+
+@{
+    Layout = "_MasterTemplate.cshtml";
+    //var test = _shareableContentService.GetShareableContent<LocationModel>(1145);
+    //var test1 = _shareableContentService.GetShareableContent<LocationModel>("/locations-data/");
+    var model = _shareableContentService.GetShareableContent<LocationModel>("/locations-data/") as LocationModel;
+}
+
+<div class="wrapper row2">
+    <section class="hoc container clear">
+        <!-- ################################################################################################ -->
+        <div class="sectiontitle">
+            <h6 class="heading">Ligula cursus ut aenean nec</h6>
+            <p>Quam ullamcorper volutpat augue eu sodales augue</p>
+        </div>
+        <ul class="nospace group intro">
+            @if (model != null)
+            {
+                foreach (var item in model.LocationItems)
+                {
+                    <li class="one_third first">
+                        <article>
+                            <a href="#"><img src="@item.Address" alt=""></a>
+                            <div class="excerpt">
+                                <h6 class="heading">@item.LocationName</h6>
+                                <p>@Html.Raw(item.ContactNumber)</p>
+                                <footer><a href="#">Read More &raquo;</a></footer>
+                            </div>
+                        </article>
+                    </li>
+                }
+            }
+
+        </ul>
+        <!-- ################################################################################################ -->
+    </section>
+</div>

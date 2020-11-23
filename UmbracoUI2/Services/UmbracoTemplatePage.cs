@@ -10,5 +10,6 @@ namespace UmbracoDI2.Services
     public abstract class UmbracoTemplatePage : Umbraco.Web.Mvc.UmbracoTemplatePage
     {
         public ISearchService _searchingServices { get; set; }
+        public IShareableContentService _shareableContentService { get; set; }
     }
 }
