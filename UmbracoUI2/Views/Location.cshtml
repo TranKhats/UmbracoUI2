@@ -5,8 +5,6 @@
 
 @{
     Layout = "_MasterTemplate.cshtml";
-    //var test = _shareableContentService.GetShareableContent<LocationModel>(1145);
-    //var test1 = _shareableContentService.GetShareableContent<LocationModel>("/locations-data/");
     var model = _shareableContentService.GetShareableContent<LocationModel>("/locations-data/") as LocationModel;
 }
 
@@ -22,13 +20,16 @@
             {
                 foreach (var item in model.LocationItems)
                 {
-                    <li class="one_third first">
-                        <article>
-                            <a href="#"><img src="@item.Address" alt=""></a>
+                    <li class="one_third">
+                        <article class="location-container">
+                            <h3 class="heading"><b>@Html.Raw(item.LocationName)</b></h3>
+                            <a href="#"><img src="@item.LocationImage" alt="" /></a>
                             <div class="excerpt">
-                                <h6 class="heading">@item.LocationName</h6>
-                                <p>@Html.Raw(item.ContactNumber)</p>
-                                <footer><a href="#">Read More &raquo;</a></footer>
+                                <div>@Html.Raw(item.Address)</div>
+                                <div>
+                                    <img class="icon-phone-location" src="~/assets/images/phone-icon.png" alt="" />
+                                    <p>@Html.Raw(item.ContactNumber)</p>
+                                </div>
                             </div>
                         </article>
                     </li>

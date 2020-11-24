@@ -5,6 +5,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using UmbracoUI2.Services;
+using UmbracoUI2.Web.Constants;
+
 
 namespace UmbracoUI2.Controlllers
 {
@@ -25,7 +27,8 @@ namespace UmbracoUI2.Controlllers
 
         public ActionResult GetNavigationMenu()
         {
-            var menu = _navigationService.GetNavigations();
+            var language = HttpContext.Request.Cookies[UmbracoUI2Constants.LanguagesCookieKey];
+            var menu = _navigationService.GetNavigations(language.Value);
             return PartialView("~/Views/Partials/_TopNavigation.cshtml", menu);
         }
     }

@@ -25,5 +25,8 @@ namespace UmbracoUI2.Models
 
         [UmbracoProperty("locationName")]
         public string LocationName { get; set; }
+
+        [UmbracoProperty("locationImage")]
+        public string LocationImage { get; set; }
     }
 }

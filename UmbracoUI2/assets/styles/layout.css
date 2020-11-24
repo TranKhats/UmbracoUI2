@@ -81,7 +81,10 @@ File: Layout CSS
 .sectiontitle *{margin:0;}
 
 .intro{}
-.intro article{max-width:320px;}
+	.intro article {
+		max-width: 320px;
+		max-height: 349px;
+	}
 .intro article .heading{font-size:1.2rem;}
 .intro article .excerpt{padding:20px;}
 .intro article .excerpt *{margin:0 0 10px 0;}
@@ -311,10 +314,30 @@ input:focus, textarea:focus, *:required:focus{border-color:#00CCBD;}
 
 
 /* Navigation */
-#mainav li a{color:inherit;}
+#mainav li span {
+	color: inherit;
+	width: 100%;
+	display: block;
+	min-height: 30px;
+	padding-left: 5px;
+	padding-top: 6px;
+}
+#mainav .language-menu li{
+	max-width:100px;
+}
+
+#mainav li a {
+	color: inherit;
+}
 #mainav .active a, #mainav a:hover, #mainav li:hover > a{color:#00CCBD; background-color:inherit;}
+#mainav .active span, #mainav span:hover, #mainav li:hover > span{color:#00CCBD; background-color:inherit;cursor:pointer}
+
 #mainav li li a, #mainav .active li a{color:#FFFFFF; background-color:rgba(0,0,0,.6); border-color:rgba(0,0,0,.6);}
+#mainav li li span, #mainav .active li span{color:#FFFFFF; background-color:rgba(0,0,0,.6); border-color:rgba(0,0,0,.6);}
+
 #mainav li li:hover > a, #mainav .active .active > a{color:#FFFFFF; background-color:#00CCBD;}
+#mainav li li:hover > span, #mainav .active .active > span{color:#FFFFFF; background-color:#00CCBD;}
+
 #mainav form select{color:#FFFFFF; background-color:#000000; border-color:rgba(255,255,255,.2);}
 
 #breadcrumb a{color:inherit; background-color:inherit;}
@@ -412,4 +435,17 @@ table a, #comments a{background-color:inherit;}
 
 	#introblocks ul, #introblocks ul li{display:block; width:100%; height:100%;}
 	#introblocks ul li{padding:25px; border-width:0 0 1px 0;}
+}
+
+.icon-phone-location {
+	width: 31px;
+	float: left;
+	margin-right: 15px !important;
+}
+
+.location-container {
+	background-color: #e2dddd !important;
+	margin: 5px;
+	padding: 10px;
+	border-radius: 5px;
 }

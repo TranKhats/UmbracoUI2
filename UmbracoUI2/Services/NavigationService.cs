@@ -8,12 +8,13 @@ using Umbraco.Core.Models;
 using Umbraco.Web;
 using Umbraco.Web.Models;
 using UmbracoUI2.Models;
+using UmbracoUI2.Web.Constants;
 
 namespace UmbracoUI2.Services
 {
     public class NavigationService : INavigationService
     {
-        public NavigationsResultModel GetNavigations()
+        public NavigationsResultModel GetNavigations(string language = null)
         {
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
             var pages = umbracoHelper.ContentAtRoot();
@@ -21,6 +22,15 @@ namespace UmbracoUI2.Services
             if (pages != null)
             {
                 var menuItems = ((DynamicPublishedContentList)pages).ToList();
+                //-------------------------------------
+                var itemPage = pages[1].Url;
+                if (string.IsNullOrEmpty(language))
+                {
+                    language = UmbracoUI2Constants.Languages.FirstOrDefault().Value;
+                }
+                menuItems = menuItems.Where(t => t.Name.ToUpper() == language.ToUpper()).ToList();
+                //-------------------------------------
+
                 foreach (var item in menuItems)
                 {
                     NavigationListItem rootNode = new NavigationListItem()
@@ -28,8 +38,10 @@ namespace UmbracoUI2.Services
                         Link = new NavigationLink() { Url = item.Url, Text = item.Name },
                         Text = item?.Name
                     };
-                    rootNode.Items = GetChildrenById(item.Id);
-                    result.Add(rootNode);
+                    var itemNode= GetChildrenById(item.Id);//remove node language
+                    result.AddRange(itemNode);
+                    //rootNode.Items = GetChildrenById(item.Id); //this add node language
+                    //result.Add(rootNode);
                 }
                 //result = menuItems.Select(item => new NavigationListItem()
                 //{
@@ -75,7 +87,9 @@ namespace UmbracoUI2.Services
                 //listItems = new List<NavigationListItem>();
                 foreach (var childPage in childPages)
                 {
-                    NavigationListItem listItem = new NavigationListItem(new NavigationLink(childPage.Url, childPage.Name), childPage?.Name);
+                    var pageName = childPage.GetPropertyValue(UmbracoUI2Constants.AliasPageName)?.ToString();
+                    var name = string.IsNullOrEmpty(pageName) ? childPage?.Name : pageName;
+                    NavigationListItem listItem = new NavigationListItem(new NavigationLink(childPage.Url, name), name);
                     listItem.Items = GetChildNavigationList(childPage);
                     listItems.Add(listItem);
                 }

@@ -8,6 +8,6 @@ namespace IServices.IServices
 {
     public interface INavigationService
     {
-        NavigationsResultModel GetNavigations();
+        NavigationsResultModel GetNavigations(string language = null);
     }
 }

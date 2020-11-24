@@ -302,12 +302,14 @@
     <Content Include="assets\images\demo\imgr.gif" />
     <Content Include="assets\images\demo\index.html" />
     <Content Include="assets\images\index.html" />
+    <Content Include="assets\images\phone-icon.png" />
     <Content Include="assets\index.html" />
     <Content Include="assets\scripts\index.html" />
     <Content Include="assets\scripts\jquery.backtotop.js" />
     <Content Include="assets\scripts\jquery.flexslider-min.js" />
     <Content Include="assets\scripts\jquery.min.js" />
     <Content Include="assets\scripts\jquery.mobilemenu.js" />
+    <Content Include="assets\scripts\main.js" />
     <Content Include="assets\styles\custom.flexslider.css" />
     <Content Include="assets\styles\font-awesome.min.css" />
     <Content Include="assets\styles\fonts\fontawesome-webfont.svg" />
@@ -361,6 +363,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Constants\UmbracoUI2Constants.cs" />
     <Compile Include="Controlllers\FormsController.cs" />
     <Compile Include="Controlllers\NavigationController.cs" />
     <Compile Include="Extensions\PublishedContentExtensions.cs" />

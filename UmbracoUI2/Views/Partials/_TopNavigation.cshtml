@@ -5,10 +5,18 @@
 <nav id="mainav" class="fl_right">
     <ul class="clear">
         @RenderChildItems(Model.Navigations.ToList())
+        <li >
+            <a  class="drop  fh5co-sub-ddown">Languages</a>
+            <ul class="sub-menu language-menu">
+                <li><span data-value="en" class="laguage-item">English</span></li>
+                <li><span data-value="vi" class="laguage-item">Tieng Viet</span></li>
+            </ul>
+        </li>
     </ul>
 </nav>
 @helper RenderChildItems(List<NavigationListItem> listItems)
 {
+
     if (listItems != null)
     {
         foreach (var item in listItems)

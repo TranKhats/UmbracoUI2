@@ -42,6 +42,7 @@ namespace UmbracoUI2.TypeConverters
                             Address = item.TryGetVortoValue("address").ToString(),
                             LocationName = item.TryGetVortoValue("locationName").ToString(),
                             ContactNumber = properties.FirstOrDefault(t => t.PropertyTypeAlias == "phoneNumber").Value.ToString(),
+                            LocationImage= UmbracoUI2Helper.GetMediaUrlPicker(properties.FirstOrDefault(t => t.PropertyTypeAlias == "locationImage")?.DataValue.ToString())
                         };
                         result.Add(dataItem);
                     }

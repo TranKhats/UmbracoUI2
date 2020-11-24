@@ -19,9 +19,12 @@ namespace UmbracoUI2.Helpers
                 var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
                 //var guidUdi = GuidUdi.Parse(mediaId);
                 GuidUdi.TryParse(mediaId,out GuidUdi guidUdi);
-                var imageNodeId = ApplicationContext.Current.Services.EntityService.GetIdForKey(guidUdi.Guid, (UmbracoObjectTypes)Enum.Parse(typeof(UmbracoObjectTypes), guidUdi.EntityType, true));
-                var publishedContent = umbracoHelper.TypedMedia(imageNodeId.Result);
-                url = publishedContent.Url;
+                if (guidUdi != null)
+                {
+                    var imageNodeId = ApplicationContext.Current.Services.EntityService.GetIdForKey(guidUdi.Guid, (UmbracoObjectTypes)Enum.Parse(typeof(UmbracoObjectTypes), guidUdi.EntityType, true));
+                    var publishedContent = umbracoHelper.TypedMedia(imageNodeId.Result);
+                    url = publishedContent.Url;
+                }
             }
             return url;
         } 
