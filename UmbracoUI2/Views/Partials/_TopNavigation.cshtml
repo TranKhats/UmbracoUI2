@@ -1,15 +1,31 @@
 ﻿@using Dtos.Models
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<NavigationsResultModel>
 @using UmbracoUI2.Models
-
+@using UmbracoUI2.Web.Constants;
+@{ 
+    var languages = UmbracoUI2Constants.Languages.ToList();
+    var languageCookie  = Request.Cookies[UmbracoUI2Constants.LanguagesCookieKey];
+    var currentLanguage = languageCookie.Value;
+    if (string.IsNullOrEmpty(currentLanguage))
+    {
+        currentLanguage = UmbracoUI2Constants.Languages.FirstOrDefault().Value;
+    }
+    var cultureInfo= new System.Globalization.CultureInfo(currentLanguage);
+    var languageTitle = UmbracoUI2.Helpers.UmbracoUI2Helper.GetDictionaryValue(UmbracoUI2Constants.DictionaryKey.LanguageSwitch, cultureInfo, Umbraco.UmbracoContext);
+}
 <nav id="mainav" class="fl_right">
     <ul class="clear">
         @RenderChildItems(Model.Navigations.ToList())
         <li >
-            <a  class="drop  fh5co-sub-ddown">Languages</a>
+            <a  class="drop  fh5co-sub-ddown">@languageTitle</a>
             <ul class="sub-menu language-menu">
-                <li><span data-value="en" class="laguage-item">English</span></li>
-                <li><span data-value="vi" class="laguage-item">Tieng Viet</span></li>
+                @if (languages != null)
+                {
+                    foreach (var item in languages)
+                    {
+                        <li><span data-value="@item.Value" class="laguage-item">@item.Key</span></li>
+                    }
+                }
             </ul>
         </li>
     </ul>

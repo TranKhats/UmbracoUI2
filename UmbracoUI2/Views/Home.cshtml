@@ -1,5 +1,6 @@
 ﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage<ContentModels.TextPage>
 @using ContentModels = Umbraco.Web.PublishedContentModels;
+@using UmbracoUI2.Models
 @{
     
     Layout = "_MasterTemplate.cshtml";
@@ -8,8 +9,9 @@
 @using Our.Umbraco.Ditto
 @inherits UmbracoTemplatePage
 @{
-    var model = Model.Content.As<UmbracoUI2.Models.HomeModel>();
+    var model = Model.Content.As<HomeModel>();
+    var partialModel = model.ProductContainer == null ? new List<ProductContainer>() : model.ProductContainer;
 }
 
 
-@Html.Partial("_Product Item", model.ProductContainer)
+@Html.Partial("_Product Item", partialModel)

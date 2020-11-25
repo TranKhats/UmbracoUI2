@@ -432,6 +432,7 @@
     <Content Include="Views\_MasterTemplate.cshtml" />
     <Content Include="Views\About.cshtml" />
     <Content Include="Views\Location.cshtml" />
+    <Content Include="Views\EnglishNode.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
