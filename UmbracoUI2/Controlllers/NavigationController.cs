@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using umbraco.interfaces;
+using UmbracoUI2.Helpers;
 using UmbracoUI2.Services;
 using UmbracoUI2.Web.Constants;
 
@@ -31,8 +32,23 @@ namespace UmbracoUI2.Controlllers
         public ActionResult GetNavigationMenu()
         {
             //_cacheRefresher.RefreshAll();
-            var language = HttpContext.Request.Cookies[UmbracoUI2Constants.LanguagesCookieKey];
-            var menu = _navigationService.GetNavigations(language.Value);
+            var languageCookie = HttpContext.Request.Cookies[UmbracoUI2Constants.LanguagesCookieKey];
+            var language = string.Empty;
+            if (languageCookie?.Value == null)
+            {
+                language = UmbracoUI2Constants.Languages.First().Value;
+                UmbracoUI2Helper.SetCookie(Response, language);
+                //HttpCookie cookie = new HttpCookie(UmbracoUI2Constants.LanguagesCookieKey);
+                //cookie.Value = language;
+                //cookie.Expires = DateTime.Now.AddDays(30);
+                //Response.SetCookie(cookie);
+            }
+            else
+            {
+                language = languageCookie.Value;
+            }
+            //var language = languageCookie?.Value == null ? UmbracoUI2Constants.Languages.First().Value : languageCookie.Value;
+            var menu = _navigationService.GetNavigations(language);
             return PartialView("~/Views/Partials/_TopNavigation.cshtml", menu);
         }
     }

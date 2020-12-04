@@ -6,6 +6,7 @@ using System.Web;
 using Umbraco.Core;
 using Umbraco.Core.Models;
 using Umbraco.Web;
+using UmbracoUI2.Web.Constants;
 
 namespace UmbracoUI2.Helpers
 {
@@ -40,6 +41,15 @@ namespace UmbracoUI2.Helpers
                     return translation.Value;
             }
             return key; // if not found, return key
+        }
+
+        public static void SetCookie(HttpResponseBase Response, string language)
+        {
+            HttpCookie cookie = new HttpCookie(UmbracoUI2Constants.LanguagesCookieKey);
+            cookie.Value = language;
+            cookie.Expires = DateTime.Now.AddDays(30);
+            Response.SetCookie(cookie);
+
         }
         #endregion
     }
